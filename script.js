@@ -1,4 +1,4 @@
-let color = 'blue';
+let color = 'black';
 const container = document.querySelector('.container');
 
 function createGrid (rows, columns) {
@@ -18,7 +18,12 @@ function handleMouseover () {
 }
 
 function painting(e) {
-    e.target.style.backgroundColor = randomColor ();
+    if (color == reel) {
+        color = randomColor();
+        e.target.style.backgroundColor = color;
+    } else {
+    e.target.style.backgroundColor = color;
+    }
 }
 
 function getRandom () {
@@ -32,4 +37,18 @@ function randomColor () {
     let g = Math.floor(Math.random() * 255);
     let b = Math.floor(Math.random() * 255);
     return "rgb(" + r + "," + g + "," + b + ")";    
+}
+
+const eraser = document.querySelector('.eraser');
+eraser.addEventListener('click', () => color = 'white');
+
+const rainbow = document.querySelector('.rainbow');
+rainbow.addEventListener('click', () => color = reel);
+
+const clear = document.querySelector('.clear');
+clear.addEventListener('click', clearAll);
+
+function clearAll () {
+    const gridDivs = Array.from(document.querySelectorAll('.grid-divs'));
+    gridDivs.forEach(div => div.style.backgroundColor = 'white');
 }
