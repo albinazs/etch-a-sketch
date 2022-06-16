@@ -18,22 +18,18 @@ function handleMouseover () {
 }
 
 function painting(e) {
-    e.target.style.backgroundColor = color;
+    e.target.style.backgroundColor = randomColor ();
 }
 
 function getRandom () {
-    const random = Math.floor(Math.random() * 16) + 1;
+    const random = Math.floor(Math.random() * 16) + 10;
     createGrid(random, random);
 }
 getRandom();
 
 function randomColor () {
-    const random = Math.floor(Math.random() * 3);
-    if (random === 0) {
-        color = "yellow";
-    } else if (random === 1) {
-        color = "orange";
-    } else color = "black";
+    let r = Math.floor(Math.random() * 255);
+    let g = Math.floor(Math.random() * 255);
+    let b = Math.floor(Math.random() * 255);
+    return "rgb(" + r + "," + g + "," + b + ")";    
 }
-
-randomColor ();
