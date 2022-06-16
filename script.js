@@ -1,4 +1,4 @@
-//let color = green;
+let color = 'blue';
 const container = document.querySelector('.container');
 
 function createGrid (rows, columns) {
@@ -18,7 +18,7 @@ function handleMouseover () {
 }
 
 function painting(e) {
-    e.target.classList.add('red');
+    e.target.style.backgroundColor = color;
 }
 
 function getRandom () {
@@ -26,3 +26,14 @@ function getRandom () {
     createGrid(random, random);
 }
 getRandom();
+
+function randomColor () {
+    const random = Math.floor(Math.random() * 3);
+    if (random === 0) {
+        color = "yellow";
+    } else if (random === 1) {
+        color = "orange";
+    } else color = "black";
+}
+
+randomColor ();
