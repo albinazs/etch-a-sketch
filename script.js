@@ -18,16 +18,11 @@ function handleMouseover () {
 }
 
 function painting(e) {
-    if (color == reel) {
-        color = randomColor();
-        e.target.style.backgroundColor = color;
-    } else {
     e.target.style.backgroundColor = color;
     }
-}
 
 function getRandom () {
-    const random = Math.floor(Math.random() * 16) + 10;
+    const random = Math.floor(Math.random() * 54) + 10;
     createGrid(random, random);
 }
 getRandom();
@@ -43,7 +38,7 @@ const eraser = document.querySelector('.eraser');
 eraser.addEventListener('click', () => color = 'white');
 
 const rainbow = document.querySelector('.rainbow');
-rainbow.addEventListener('click', () => color = reel);
+rainbow.addEventListener('click', () => color = "reel");
 
 const clear = document.querySelector('.clear');
 clear.addEventListener('click', clearAll);
@@ -52,3 +47,9 @@ function clearAll () {
     const gridDivs = Array.from(document.querySelectorAll('.grid-divs'));
     gridDivs.forEach(div => div.style.backgroundColor = 'white');
 }
+
+//create default function
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => button.addEventListener('mouseover', () => button.classList.add('scale')));
+buttons.forEach(button => button.addEventListener('mouseout', () => button.classList.remove('scale')));
