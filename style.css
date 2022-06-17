@@ -77,8 +77,6 @@ button {
     border-width: thin;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     display: grid;
-    /*grid-template-columns: repeat(var(--grid-rows), 1fr);
-    grid-template-rows: repeat(var(--grid-columns), 1fr);*/
     background-color: white;
 }
 
@@ -101,3 +99,6 @@ img {
     cursor: pointer;
 }
 
+.active {
+    background-color:#36454F;
+}

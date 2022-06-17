@@ -5,23 +5,21 @@ let density = 32;
 const container = document.querySelector('.container');
 
 function createGrid (density) {
-    console.log(currentMode);
+    container.innerHTML = '';
     container.style.gridTemplateColumns = `repeat(${density}, 1fr)`;
     container.style.gridTemplateRows = `repeat(${density}, 1fr)`;
-    for(let i = 0; i < density * density; i++) {   
-        console.log(currentMode);    
-            const gridDiv = document.createElement('div');
-            container.appendChild(gridDiv);
-            gridDiv.classList.add('grid-divs');
-            gridDiv.addEventListener('mouseover', painting);
+    for(let i = 0; i < density * density; i++) {    
+        const gridDiv = document.createElement('div');
+        container.appendChild(gridDiv);
+        gridDiv.classList.add('grid-divs');
+        gridDiv.addEventListener('mouseover', painting);
             
-        }
     }
+}
 
 createGrid(density);
 
 function painting(e) {
-    console.log(currentMode);
     if(currentMode === 'rainbow') {
         let r = Math.floor(Math.random() * 255);
         let g = Math.floor(Math.random() * 255);
@@ -50,9 +48,27 @@ const defaultButton = document.querySelector('.default');
 const rainbowButton = document.querySelector('.rainbow');
 const eraserButton = document.querySelector('.eraser');
 
-defaultButton.addEventListener('click', () => currentMode = 'default');
-rainbowButton.addEventListener('click', () => currentMode = 'rainbow');
-eraserButton.addEventListener('click', () => currentMode = 'eraser');
+defaultButton.addEventListener('click', () => {currentMode = 'default'; buttonActive()});
+rainbowButton.addEventListener('click', () => {currentMode = 'rainbow'; buttonActive()});
+eraserButton.addEventListener('click', () => {currentMode = 'eraser', buttonActive()});
+
+defaultButton.classList.add('active');
+
+function buttonActive () {
+    if (currentMode === 'default') {
+        defaultButton.classList.add('active');
+        rainbowButton.classList.remove('active');
+        eraserButton.classList.remove('active');
+    } else if (currentMode === 'rainbow') {
+        rainbowButton.classList.add('active');
+        defaultButton.classList.remove('active');
+        eraserButton.classList.remove('active');
+    } else if (currentMode === 'eraser') {
+        eraserButton.classList.add('active');
+        defaultButton.classList.remove('active');
+        rainbowButton.classList.remove('active');
+    }
+}
 
 const slider = document.querySelector('.slider');
 const slideOutput = document.querySelector('.outputValue');
@@ -62,7 +78,6 @@ let input = slideOutput.textContent;
 slider.oninput = function () {
     slideOutput.textContent = this.value;
     input = slideOutput.textContent;
-    console.log(input);
     createGrid(input);
 }
 
